@@ -1,4 +1,18 @@
-# Getting Started with Create React App
+# React Quiz App
+
+## Aims
+
+- Landing page lets you select category, difficulty and type (perhaps length?)
+
+- Click submit to start quiz
+
+- Displays questions one by one along with the choices.
+
+- Once clicks next, highlights correct answer before moving to next question
+
+- Gives answers and number correct at end.
+
+- Loading screen when during pfetching data
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
