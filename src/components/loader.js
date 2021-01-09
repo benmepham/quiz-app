@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
 
 const Loader = () => <div>Loading!</div>;
 

@@ -2,17 +2,16 @@
 
 ## Aims
 
-- Landing page lets you select category, difficulty and type (perhaps length?)
-
-- Click submit to start quiz
-
-- Displays questions one by one along with the choices.
-
-- Once clicks next, highlights correct answer before moving to next question
-
-- Gives answers and number correct at end.
-
-- Loading screen when during pfetching data
+- [x] Landing page lets you select category, difficulty and type
+- [x] Click submit to start quiz
+- [x] Displays questions one by one along with the choices.
+- [ ] Once clicks next, highlights correct answer before moving to next question
+- [ ] Gives score/10 at end.
+- [x] Loading screen when during fetching data
+- [ ] Prettify!
+- [ ] Header/Footer
+- [ ] BONUS: when redo with same questions, compare to previous best
+- [ ] BONUS: can specify length
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
