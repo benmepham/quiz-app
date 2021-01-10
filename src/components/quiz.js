@@ -109,9 +109,9 @@ class Quiz extends Component {
         return (
             <div>
                 <div>
-                    <h1>{`Question No. ${questionIndex + 1} of ${
+                    <h2>{`Question No. ${questionIndex + 1} of ${
                         quizData.length
-                    }`}</h1>
+                    }`}</h2>
                     <p>{`Q. ${he.decode(quizData[questionIndex].question)}`}</p>
                     <p>Please choose one of the following answers</p>
                     {!showAnswer && (

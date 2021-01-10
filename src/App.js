@@ -5,6 +5,8 @@ import Start from "./components/start.js";
 //import Loader from "./components/loader.js"
 import React, { Component } from "react";
 import Loader from "./components/loader";
+import Error from "./components/error";
+import Header from "./components/header";
 
 // Main App class
 class App extends Component {
@@ -75,7 +77,7 @@ class App extends Component {
         } = this.state;
 
         if (error) {
-            return <p>{error.message}</p>;
+            return <Error message={error.message} />;
         }
 
         if (isLoading) {
@@ -84,15 +86,21 @@ class App extends Component {
 
         return (
             <div>
-                {!isRunning && (
-                    <Start startQuiz={this.startQuiz} categories={categories} />
-                )}
-                {isRunning && (
-                    <Quiz
-                        restartQuiz={this.handleRestart}
-                        questions={questions}
-                    />
-                )}
+                <Header/>
+                <div>
+                    {!isRunning && (
+                        <Start
+                            startQuiz={this.startQuiz}
+                            categories={categories}
+                        />
+                    )}
+                    {isRunning && (
+                        <Quiz
+                            restartQuiz={this.handleRestart}
+                            questions={questions}
+                        />
+                    )}
+                </div>
             </div>
         );
     }

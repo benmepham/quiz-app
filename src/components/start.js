@@ -59,11 +59,9 @@ class Start extends Component {
                     ))}
                 </select>
 
-                <input
-                    type="submit"
-                    value="Start"
-                    onClick={() => this.props.startQuiz(vals)}
-                />
+                <button onClick={() => this.props.startQuiz(vals)}>
+                    Start
+                </button>
             </div>
         );
     }
