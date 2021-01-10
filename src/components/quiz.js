@@ -12,20 +12,31 @@ class Quiz extends Component {
             correctAnswers: 0,
             isComplete: false,
             correct: null,
-            answer: null,
+            selected: null,
+            showAnswer: false,
+            error: null,
         };
         this.setOptions = this.setOptions.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleNext = this.handleNext.bind(this);
+        this.handleCheck = this.handleCheck.bind(this);
         this.restartSame = this.restartSame.bind(this);
     }
 
     componentDidMount() {
         fetch(this.props.url)
             .then((response) => response.json())
-            .then((data) =>
-                this.setOptions(data.results, this.state.questionIndex)
-            );
+            .then((data) => {
+                if (data.response_code === 0) {
+                    return this.setOptions(
+                        data.results,
+                        this.state.questionIndex
+                    );
+                } else {
+                    throw new Error("error");
+                }
+            })
+            .catch((error) => this.setState({ error, isLoading: false }));
     }
 
     setOptions(quizData, questionIndex) {
@@ -41,29 +52,35 @@ class Quiz extends Component {
     }
 
     handleClick(event) {
-        this.setState({ answer: event.target.value });
+        this.setState({ selected: event.target.value });
     }
 
-    handleNext() {
-        const {
-            answer,
-            correct,
-            correctAnswers,
-            quizData,
-            questionIndex,
-        } = this.state;
-        if (answer === correct) {
+    handleCheck() {
+        const { selected, correct, correctAnswers } = this.state;
+
+        this.setState({ showAnswer: true });
+        console.log("checking");
+        if (selected === correct) {
             console.log("correct");
             this.setState({ correctAnswers: correctAnswers + 1 });
         }
-        if (questionIndex == quizData.length - 1) {
+    }
+
+    handleNext() {
+        const { quizData, questionIndex } = this.state;
+
+        if (questionIndex === quizData.length - 1) {
             this.setState({
                 isComplete: true,
             });
             return;
         }
         this.setOptions(quizData, questionIndex + 1);
-        this.setState({ questionIndex: this.state.questionIndex + 1 });
+        this.setState({
+            questionIndex: this.state.questionIndex + 1,
+            showAnswer: false,
+            selected: null,
+        });
     }
 
     restartSame() {
@@ -72,7 +89,7 @@ class Quiz extends Component {
             correctAnswers: 0,
             isComplete: false,
             correct: null,
-            answer: null,
+            selected: null,
         });
     }
 
@@ -81,11 +98,18 @@ class Quiz extends Component {
             quizData,
             isLoading,
             questionIndex,
-            answer,
+            selected,
             correct,
             correctAnswers,
             isComplete,
+            showAnswer,
+            error,
         } = this.state;
+
+        if (error) {
+            return <p>{error.message}</p>;
+        }
+
         return (
             <div>
                 {this.state.isLoading && <Loader />}
@@ -99,28 +123,56 @@ class Quiz extends Component {
                             quizData[questionIndex].question
                         )}`}</p>
                         <p>Please choose one of the following answers</p>
-                        {this.state.options.map((item) => (
-                            <button
-                                style={
-                                    answer === item
-                                        ? { color: "red" }
-                                        : { color: "black" }
-                                }
-                                value={item}
-                                onClick={this.handleClick}
-                            >
-                                {item}
-                            </button>
-                        ))}
-
-                        <button onClick={this.handleNext}>Next</button>
+                        {!showAnswer && (
+                            <div>
+                                {this.state.options.map((item) => (
+                                    <button
+                                        style={
+                                            selected === item
+                                                ? { color: "blue" }
+                                                : { color: "black" }
+                                        }
+                                        value={item}
+                                        onClick={this.handleClick}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                                <button onClick={this.handleCheck}>
+                                    Check
+                                </button>
+                            </div>
+                        )}
+                        {showAnswer && (
+                            <div>
+                                {this.state.options.map((item) => (
+                                    <button
+                                        style={
+                                            item === correct
+                                                ? { color: "green" }
+                                                : item === selected &&
+                                                  item !== correct
+                                                ? { color: "blue" }
+                                                : { color: "black" }
+                                        }
+                                        value={item}
+                                    >
+                                        {item}
+                                    </button>
+                                ))}
+                                <button onClick={this.handleNext}>Next</button>
+                            </div>
+                        )}
                     </div>
                 )}
 
                 {!isLoading && isComplete && (
                     <div>
                         complete!<div>{correctAnswers}</div>
-                        <button onClick={this.restartSame}>Try again?</button>
+                        <button onClick={this.restartSame}>Retry?</button>
+                        <button onClick={this.props.restartQuiz}>
+                            Back to Home
+                        </button>
                     </div>
                 )}
             </div>

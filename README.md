@@ -5,11 +5,13 @@
 - [x] Landing page lets you select category, difficulty and type
 - [x] Click submit to start quiz
 - [x] Displays questions one by one along with the choices.
-- [ ] Once clicks next, highlights correct answer before moving to next question
-- [ ] Gives score/10 at end.
+- [x] Once clicks next, highlights correct answer before moving to next question
+- [x] Gives score/10 at end. with options to redo or go to start page
 - [x] Loading screen when during fetching data
+- [ ] Add network error handling
 - [ ] Prettify!
-- [ ] Header/Footer
+- [ ] Fancy error page/spiner
+- [ ] Header
 - [ ] BONUS: when redo with same questions, compare to previous best
 - [ ] BONUS: can specify length
 

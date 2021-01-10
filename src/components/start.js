@@ -13,10 +13,10 @@ class Start extends Component {
                 { value: "multiple", text: "Multiple Choice" },
                 { value: "boolean", text: "True/False" },
             ],
-            formVal: null,
             category: "",
             difficulty: "",
             type: "",
+            error: null,
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -30,7 +30,8 @@ class Start extends Component {
                     categories: data.trivia_categories,
                     isLoading: false,
                 })
-            );
+            )
+            .catch((error) => this.setState({ error, isLoading: false }));
     }
 
     // sets state to selection
@@ -40,21 +41,21 @@ class Start extends Component {
         // console.log(type, value);
         this.setState({ [type]: value });
     }
-    // handleSubmit() {
-    //     alert(this.state.category);
-    // }
 
     render() {
-        const { category, difficulty, type } = this.state;
-        const vals = { category, difficulty, type };
+        const { category, difficulty, type, error } = this.state,
+            vals = { category, difficulty, type };
+
+        if (error) {
+            return <p>{error.message}</p>;
+        }
         return (
             <div>
                 {this.state.isLoading && <Loader />}
                 {!this.state.isLoading && (
-                    <form>
-                        {/* onSubmit={this.handleSubmit} */}
+                    <div>
                         <select id="category" onChange={this.handleChange}>
-                            <option value="" selected="selected">
+                            <option value="" selected>
                                 Any Category
                             </option>
 
@@ -64,7 +65,7 @@ class Start extends Component {
                         </select>
 
                         <select id="difficulty" onChange={this.handleChange}>
-                            <option value="" selected="selected">
+                            <option value="" selected>
                                 Any Difficulty
                             </option>
                             {this.state.difficulties.map((item) => (
@@ -75,19 +76,20 @@ class Start extends Component {
                         </select>
 
                         <select id="type" onChange={this.handleChange}>
-                            <option value="" selected="selected">
+                            <option value="" selected>
                                 Any Type
                             </option>
                             {this.state.types.map((item) => (
                                 <option value={item.value}>{item.text}</option>
                             ))}
                         </select>
+
                         <input
                             type="submit"
                             value="Submit"
                             onClick={() => this.props.startQuiz(vals)}
                         />
-                    </form>
+                    </div>
                 )}
             </div>
         );

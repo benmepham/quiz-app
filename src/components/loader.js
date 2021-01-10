@@ -1,5 +1,10 @@
 //import React, { Component } from "react";
 
-const Loader = () => <div>Loading!</div>;
+const Loader = () => {
+    setTimeout(() => {
+        console.log("waiting...");
+    }, 5000);
+    return <div>Loading!</div>;
+};
 
 export default Loader;

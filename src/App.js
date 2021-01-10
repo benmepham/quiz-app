@@ -9,16 +9,19 @@ import React, { Component } from "react";
 class App extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isRunning: false,
             url: null,
-            isFinished: false,
         };
         this.startQuiz = this.startQuiz.bind(this);
+        this.handleRestart = this.handleRestart.bind(this);
+    }
+ 
+    getCategories() {
+
     }
 
-    // Starts the quiz after choices selecteded
+    // Starts the quiz after choices selected
     startQuiz(values) {
         const { category, difficulty, type } = values;
         const url =
@@ -28,9 +31,11 @@ class App extends Component {
             difficulty +
             "&type=" +
             type;
-
         this.setState({ isRunning: true, url });
-        console.log(values, url);
+    }
+
+    handleRestart() {
+        this.setState({ isRunning: false });
     }
 
     render() {
@@ -38,8 +43,9 @@ class App extends Component {
         return (
             <div>
                 {!isRunning && <Start startQuiz={this.startQuiz} />}
-                {isRunning && <Quiz url={url} />}
-                
+                {isRunning && (
+                    <Quiz url={url} restartQuiz={this.handleRestart} />
+                )}
             </div>
         );
     }
