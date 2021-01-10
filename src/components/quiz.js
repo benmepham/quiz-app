@@ -14,7 +14,6 @@ class Quiz extends Component {
             correct: null,
             selected: null,
             showAnswer: false,
-            error: null,
         };
         this.setOptions = this.setOptions.bind(this);
         this.handleClick = this.handleClick.bind(this);
@@ -24,19 +23,7 @@ class Quiz extends Component {
     }
 
     componentDidMount() {
-        fetch(this.props.url)
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.response_code === 0) {
-                    return this.setOptions(
-                        data.results,
-                        this.state.questionIndex
-                    );
-                } else {
-                    throw new Error("error");
-                }
-            })
-            .catch((error) => this.setState({ error, isLoading: false }));
+        this.setOptions(this.props.questions, this.state.questionIndex);
     }
 
     setOptions(quizData, questionIndex) {
@@ -57,11 +44,8 @@ class Quiz extends Component {
 
     handleCheck() {
         const { selected, correct, correctAnswers } = this.state;
-
         this.setState({ showAnswer: true });
-        console.log("checking");
         if (selected === correct) {
-            console.log("correct");
             this.setState({ correctAnswers: correctAnswers + 1 });
         }
     }
@@ -103,78 +87,72 @@ class Quiz extends Component {
             correctAnswers,
             isComplete,
             showAnswer,
-            error,
         } = this.state;
 
-        if (error) {
-            return <p>{error.message}</p>;
+        if (isLoading) {
+            return <Loader />;
+        }
+
+        if (isComplete) {
+            return (
+                <div>
+                    complete!
+                    <div>{correctAnswers}</div>
+                    <button onClick={this.restartSame}>Retry?</button>
+                    <button onClick={this.props.restartQuiz}>
+                        Back to Home
+                    </button>
+                </div>
+            );
         }
 
         return (
             <div>
-                {this.state.isLoading && <Loader />}
-
-                {!isLoading && !isComplete && (
-                    <div>
-                        <h1>{`Question No.${questionIndex + 1} of ${
-                            quizData.length
-                        }`}</h1>
-                        <p>{`Q. ${he.decode(
-                            quizData[questionIndex].question
-                        )}`}</p>
-                        <p>Please choose one of the following answers</p>
-                        {!showAnswer && (
-                            <div>
-                                {this.state.options.map((item) => (
-                                    <button
-                                        style={
-                                            selected === item
-                                                ? { color: "blue" }
-                                                : { color: "black" }
-                                        }
-                                        value={item}
-                                        onClick={this.handleClick}
-                                    >
-                                        {item}
-                                    </button>
-                                ))}
-                                <button onClick={this.handleCheck}>
-                                    Check
+                <div>
+                    <h1>{`Question No. ${questionIndex + 1} of ${
+                        quizData.length
+                    }`}</h1>
+                    <p>{`Q. ${he.decode(quizData[questionIndex].question)}`}</p>
+                    <p>Please choose one of the following answers</p>
+                    {!showAnswer && (
+                        <div>
+                            {this.state.options.map((item) => (
+                                <button
+                                    style={
+                                        selected === item
+                                            ? { color: "blue" }
+                                            : { color: "black" }
+                                    }
+                                    value={item}
+                                    onClick={this.handleClick}
+                                >
+                                    {he.decode(item)}
                                 </button>
-                            </div>
-                        )}
-                        {showAnswer && (
-                            <div>
-                                {this.state.options.map((item) => (
-                                    <button
-                                        style={
-                                            item === correct
-                                                ? { color: "green" }
-                                                : item === selected &&
-                                                  item !== correct
-                                                ? { color: "blue" }
-                                                : { color: "black" }
-                                        }
-                                        value={item}
-                                    >
-                                        {item}
-                                    </button>
-                                ))}
-                                <button onClick={this.handleNext}>Next</button>
-                            </div>
-                        )}
-                    </div>
-                )}
-
-                {!isLoading && isComplete && (
-                    <div>
-                        complete!<div>{correctAnswers}</div>
-                        <button onClick={this.restartSame}>Retry?</button>
-                        <button onClick={this.props.restartQuiz}>
-                            Back to Home
-                        </button>
-                    </div>
-                )}
+                            ))}
+                            <button onClick={this.handleCheck}>Check</button>
+                        </div>
+                    )}
+                    {showAnswer && (
+                        <div>
+                            {this.state.options.map((item) => (
+                                <button
+                                    style={
+                                        item === correct
+                                            ? { color: "green" }
+                                            : item === selected &&
+                                              item !== correct
+                                            ? { color: "blue" }
+                                            : { color: "black" }
+                                    }
+                                    value={item}
+                                >
+                                    {he.decode(item)}
+                                </button>
+                            ))}
+                            <button onClick={this.handleNext}>Next</button>
+                        </div>
+                    )}
+                </div>
             </div>
         );
     }

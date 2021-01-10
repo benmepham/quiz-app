@@ -4,6 +4,7 @@ import Quiz from "./components/quiz.js";
 import Start from "./components/start.js";
 //import Loader from "./components/loader.js"
 import React, { Component } from "react";
+import Loader from "./components/loader";
 
 // Main App class
 class App extends Component {
@@ -11,18 +12,30 @@ class App extends Component {
         super(props);
         this.state = {
             isRunning: false,
-            url: null,
+            isLoading: true,
+            categories: null,
+            error: null,
+            questions: null,
         };
         this.startQuiz = this.startQuiz.bind(this);
         this.handleRestart = this.handleRestart.bind(this);
     }
- 
-    getCategories() {
 
+    componentDidMount() {
+        fetch("https://opentdb.com/api_category.php")
+            .then((response) => response.json())
+            .then((data) =>
+                this.setState({
+                    categories: data.trivia_categories,
+                    isLoading: false,
+                })
+            )
+            .catch((error) => this.setState({ error, isLoading: false }));
     }
 
     // Starts the quiz after choices selected
     startQuiz(values) {
+        this.setState({ isLoading: true });
         const { category, difficulty, type } = values;
         const url =
             "https://opentdb.com/api.php?amount=10&category=" +
@@ -31,7 +44,21 @@ class App extends Component {
             difficulty +
             "&type=" +
             type;
-        this.setState({ isRunning: true, url });
+
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.response_code === 0) {
+                    this.setState({
+                        questions: data.results,
+                        isLoading: false,
+                        isRunning: true,
+                    });
+                } else {
+                    throw new Error("API Error");
+                }
+            })
+            .catch((error) => this.setState({ error, isLoading: false }));
     }
 
     handleRestart() {
@@ -39,12 +66,32 @@ class App extends Component {
     }
 
     render() {
-        const { isRunning, url } = this.state;
+        const {
+            isRunning,
+            isLoading,
+            categories,
+            error,
+            questions,
+        } = this.state;
+
+        if (error) {
+            return <p>{error.message}</p>;
+        }
+
+        if (isLoading) {
+            return <Loader />;
+        }
+
         return (
             <div>
-                {!isRunning && <Start startQuiz={this.startQuiz} />}
+                {!isRunning && (
+                    <Start startQuiz={this.startQuiz} categories={categories} />
+                )}
                 {isRunning && (
-                    <Quiz url={url} restartQuiz={this.handleRestart} />
+                    <Quiz
+                        restartQuiz={this.handleRestart}
+                        questions={questions}
+                    />
                 )}
             </div>
         );

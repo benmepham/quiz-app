@@ -8,12 +8,13 @@
 - [x] Once clicks next, highlights correct answer before moving to next question
 - [x] Gives score/10 at end. with options to redo or go to start page
 - [x] Loading screen when during fetching data
-- [ ] Add network error handling
+- [x] Add network error handling
 - [ ] Prettify!
-- [ ] Fancy error page/spiner
+- [ ] Fancy error page/spiner/ending page
 - [ ] Header
 - [ ] BONUS: when redo with same questions, compare to previous best
 - [ ] BONUS: can specify length
+- [ ] BONUS: Progress bar
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
