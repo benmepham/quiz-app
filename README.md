@@ -11,9 +11,10 @@
 - [x] Gives score/10 at end. with options to redo or go to beginning
 - [x] Loading screen when fetching data
 - [x] Add network error handling
-- [ ] Fancy error page/spiner
-- [ ] Header
-- [ ] Prettify!
+- [x] Basic CSS styling
+- [ ] Fancy error page/spinner
+- [ ] Improve header
+- [ ] Prettify (improve styling)
 - [ ] BONUS: when redo with same questions, compare to previous best
 - [ ] BONUS: can specify length
 - [ ] BONUS: Progress bar
