@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/quiz-app/static/css/main.16fa0c4f.chunk.css",
+    "main.js": "/quiz-app/static/js/main.62582f16.chunk.js",
+    "main.js.map": "/quiz-app/static/js/main.62582f16.chunk.js.map",
+    "runtime-main.js": "/quiz-app/static/js/runtime-main.6f9e670c.js",
+    "runtime-main.js.map": "/quiz-app/static/js/runtime-main.6f9e670c.js.map",
+    "static/js/2.29e56146.chunk.js": "/quiz-app/static/js/2.29e56146.chunk.js",
+    "static/js/2.29e56146.chunk.js.map": "/quiz-app/static/js/2.29e56146.chunk.js.map",
+    "static/js/3.69c35bad.chunk.js": "/quiz-app/static/js/3.69c35bad.chunk.js",
+    "static/js/3.69c35bad.chunk.js.map": "/quiz-app/static/js/3.69c35bad.chunk.js.map",
+    "index.html": "/quiz-app/index.html",
+    "static/css/main.16fa0c4f.chunk.css.map": "/quiz-app/static/css/main.16fa0c4f.chunk.css.map",
+    "static/js/2.29e56146.chunk.js.LICENSE.txt": "/quiz-app/static/js/2.29e56146.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f9e670c.js",
+    "static/js/2.29e56146.chunk.js",
+    "static/css/main.16fa0c4f.chunk.css",
+    "static/js/main.62582f16.chunk.js"
+  ]
+}
