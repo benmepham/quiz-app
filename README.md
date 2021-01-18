@@ -1,5 +1,7 @@
 # React Quiz App
 
+![DeployToGitHubPages](https://github.com/benmepham/quiz-app/workflows/DeployToGitHubPages/badge.svg)
+
 ## Tasks
 
 - [x] Landing page lets you select category, difficulty and type
