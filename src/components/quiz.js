@@ -95,64 +95,83 @@ class Quiz extends Component {
 
         if (isComplete) {
             return (
-                <div>
-                    complete!
-                    <div>{correctAnswers}</div>
-                    <button onClick={this.restartSame}>Retry?</button>
-                    <button onClick={this.props.restartQuiz}>
-                        Back to Home
+                <div className="answers">
+                    <h1 className="item">Complete</h1>
+                    <h3 className="item">
+                        You scored {correctAnswers} out of 10
+                    </h3>
+                    <button className="item button" onClick={this.restartSame}>
+                    Retry?
+                    </button>
+                    <button className="item button " onClick={this.props.restartQuiz}>
+                    Home
                     </button>
                 </div>
             );
         }
 
         return (
-            <div>
-                <div>
+            <div className="quiz">
+                <div className="item">
                     <h2>{`Question No. ${questionIndex + 1} of ${
                         quizData.length
                     }`}</h2>
-                    <p>{`Q. ${he.decode(quizData[questionIndex].question)}`}</p>
-                    <p>Please choose one of the following answers</p>
-                    {!showAnswer && (
-                        <div>
-                            {this.state.options.map((item) => (
-                                <button
-                                    style={
-                                        selected === item
-                                            ? { color: "blue" }
-                                            : { color: "black" }
-                                    }
-                                    value={item}
-                                    onClick={this.handleClick}
-                                >
-                                    {he.decode(item)}
-                                </button>
-                            ))}
-                            <button onClick={this.handleCheck}>Check</button>
-                        </div>
-                    )}
-                    {showAnswer && (
-                        <div>
-                            {this.state.options.map((item) => (
-                                <button
-                                    style={
-                                        item === correct
-                                            ? { color: "green" }
-                                            : item === selected &&
-                                              item !== correct
-                                            ? { color: "blue" }
-                                            : { color: "black" }
-                                    }
-                                    value={item}
-                                >
-                                    {he.decode(item)}
-                                </button>
-                            ))}
-                            <button onClick={this.handleNext}>Next</button>
-                        </div>
-                    )}
                 </div>
+                <p className="item">{`Q. ${he.decode(
+                    quizData[questionIndex].question
+                )}`}</p>
+                <p className="item">
+                    Please choose one of the following answers
+                </p>
+                {!showAnswer && (
+                    <div className="options">
+                        {this.state.options.map((item) => (
+                            <button
+                                // className="item button"
+                                className={
+                                    selected === item
+                                        ? "item button selected"
+                                        : "item button"
+                                }
+                                value={item}
+                                onClick={this.handleClick}
+                            >
+                                {he.decode(item)}
+                            </button>
+                        ))}
+                        <button
+                            className="item button"
+                            onClick={this.handleCheck}
+                        >
+                            Check
+                        </button>
+                    </div>
+                )}
+                {showAnswer && (
+                    <div className="options">
+                        {this.state.options.map((item) => (
+                            <button
+                                // className="item button"
+                                className={
+                                    item === correct
+                                        ? "item button correct"
+                                        : item === selected && item !== correct
+                                        ? "item button selected"
+                                        : "item button"
+                                }
+                                value={item}
+                            >
+                                {he.decode(item)}
+                            </button>
+                        ))}
+                        <button
+                            className="item button"
+                            onClick={this.handleNext}
+                        >
+                            Next
+                        </button>
+                    </div>
+                )}
             </div>
         );
     }

@@ -1,17 +1,17 @@
 # React Quiz App
 
-## Aims
+## Tasks
 
 - [x] Landing page lets you select category, difficulty and type
 - [x] Click submit to start quiz
 - [x] Displays questions one by one along with the choices.
-- [x] Once clicks next, highlights correct answer before moving to next question
-- [x] Gives score/10 at end. with options to redo or go to start page
-- [x] Loading screen when during fetching data
+- [x] Once clicks check, highlights correct answer before moving to next question
+- [x] Gives score/10 at end. with options to redo or go to beginning
+- [x] Loading screen when fetching data
 - [x] Add network error handling
-- [ ] Prettify!
-- [ ] Fancy error page/spiner/ending page
+- [ ] Fancy error page/spiner
 - [ ] Header
+- [ ] Prettify!
 - [ ] BONUS: when redo with same questions, compare to previous best
 - [ ] BONUS: can specify length
 - [ ] BONUS: Progress bar

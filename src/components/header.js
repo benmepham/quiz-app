@@ -1,8 +1,6 @@
-// import React, { Component } from "react";
-
 const Header = () => {
     return (
-        <div>
+        <div className="header">
             <h1>Quiz App</h1>
         </div>
     );

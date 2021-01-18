@@ -1,38 +1,89 @@
-/* .App {
-  text-align: center;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 80px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+    grid-column: span 12;
+    /* height: 60px; */
+    text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.start {
+    grid-column: 4 / 10;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 50px 50px 50px 50px;
+    border: solid;
+    padding: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.select {
+    grid-column: span 12;
+    display: flex;
+    /* justify-content: center; */
+    /* margin-left: 10px; */
+    align-items: center;
+    /* margin-left: 10px;
+    margin-right: 10px; */
 }
 
-.App-link {
-  color: #61dafb;
+.quiz {
+    grid-column: 4 / 10;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 50px 30px 30px;
+    border: solid;
+    padding: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.item {
+    grid-column: span 12;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    /* margin-left: 10px;
+    margin-right: 10px;
 } */
+}
+.options {
+    grid-column: span 12;
+    /* justify-content: center; */
+    /* margin-left: 10px;  margin-right: 10px; */
+    display: grid;
+    grid-template-rows: 50px 50px 50px 50px 50px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
+}
+
+.button {
+    background-color: rgb(216, 216, 216);
+    color: black;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    margin: 5px;
+}
+.selected {
+    background-color: darkgrey;
+}
+
+.correct {
+    background-color: green;
+}
+
+.answers {
+    grid-column: 4 / 10;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 50px 30px 30px;
+    border: solid;
+    padding: 10px;
+    grid-template-rows: 50px 50px 50px 50px;
+}
+
+.answers .item {
+  justify-content: center;
+
+}
