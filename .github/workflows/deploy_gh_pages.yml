@@ -23,5 +23,3 @@ jobs:
               with:
                   deploy_key: ${{ secrets.ACTIONS_GHP_KEY}}
                   publish_dir: ./build
-        # - name: Updating Domain
-        #   run: echo "Update domain"

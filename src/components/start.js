@@ -31,45 +31,52 @@ class Start extends Component {
             { categories } = this.props;
         return (
             <div className="start">
-                <div className="select">
-                    <select id="category" onChange={this.handleChange}>
-                        <option value="" selected>
-                            Any Category
-                        </option>
+                <select
+                    id="category"
+                    className="button_start"
+                    onChange={this.handleChange}
+                >
+                    <option value="" selected>
+                        Any Category
+                    </option>
 
-                        {categories.map((item) => (
-                            <option value={item.id}>{item.name}</option>
-                        ))}
-                    </select>
-                </div>
+                    {categories.map((item) => (
+                        <option value={item.id}>{item.name}</option>
+                    ))}
+                </select>
 
-                <div className="select">
-                    <select id="difficulty" onChange={this.handleChange}>
-                        <option value="" selected>
-                            Any Difficulty
-                        </option>
-                        {difficulties.map((item) => (
-                            <option value={item.toLowerCase()}>{item}</option>
-                        ))}
-                    </select>
-                </div>
+                <select
+                    id="difficulty"
+                    className="button_start"
+                    onChange={this.handleChange}
+                >
+                    <option value="" selected>
+                        Any Difficulty
+                    </option>
+                    {difficulties.map((item) => (
+                        <option value={item.toLowerCase()}>{item}</option>
+                    ))}
+                </select>
 
-                <div className="select">
-                    <select id="type" onChange={this.handleChange}>
-                        <option value="" selected>
-                            Any Type
-                        </option>
-                        {types.map((item) => (
-                            <option value={item.value}>{item.text}</option>
-                        ))}
-                    </select>
-                </div>
-                
-                <div className="select">
-                    <button onClick={() => this.props.startQuiz(vals)}>
-                        Start
-                    </button>
-                </div>
+                <select
+                    id="type"
+                    className="button_start"
+                    onChange={this.handleChange}
+                >
+                    <option value="" selected>
+                        Any Type
+                    </option>
+                    {types.map((item) => (
+                        <option value={item.value}>{item.text}</option>
+                    ))}
+                </select>
+
+                <button
+                    className="button_start left"
+                    onClick={() => this.props.startQuiz(vals)}
+                >
+                    Start
+                </button>
             </div>
         );
     }

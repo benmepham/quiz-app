@@ -95,16 +95,22 @@ class Quiz extends Component {
 
         if (isComplete) {
             return (
-                <div className="answers">
-                    <h1 className="item">Complete</h1>
-                    <h3 className="item">
+                <div className="complete">
+                    <h1 className="complete-item">Complete</h1>
+                    <h3 className="complete-item">
                         You scored {correctAnswers} out of 10
                     </h3>
-                    <button className="item button" onClick={this.restartSame}>
-                    Retry?
+                    <button
+                        className="button-complete btn1"
+                        onClick={this.restartSame}
+                    >
+                        Retry?
                     </button>
-                    <button className="item button " onClick={this.props.restartQuiz}>
-                    Home
+                    <button
+                        className="button-complete btn2"
+                        onClick={this.props.restartQuiz}
+                    >
+                        Home
                     </button>
                 </div>
             );
@@ -112,26 +118,30 @@ class Quiz extends Component {
 
         return (
             <div className="quiz">
-                <div className="item">
+                {/* <div className="item">
                     <h2>{`Question No. ${questionIndex + 1} of ${
                         quizData.length
                     }`}</h2>
-                </div>
-                <p className="item">{`Q. ${he.decode(
+                </div> */}
+
+                <h2 className="item">{`Question No. ${questionIndex + 1} of ${
+                    quizData.length
+                }`}</h2>
+
+                <h3 className="item">{`Q. ${he.decode(
                     quizData[questionIndex].question
-                )}`}</p>
+                )}`}</h3>
                 <p className="item">
-                    Please choose one of the following answers
+                    Please choose one of the following answers:
                 </p>
                 {!showAnswer && (
                     <div className="options">
                         {this.state.options.map((item) => (
                             <button
-                                // className="item button"
                                 className={
                                     selected === item
-                                        ? "item button selected"
-                                        : "item button"
+                                        ? "button-quiz selected"
+                                        : "button-quiz"
                                 }
                                 value={item}
                                 onClick={this.handleClick}
@@ -140,7 +150,7 @@ class Quiz extends Component {
                             </button>
                         ))}
                         <button
-                            className="item button"
+                            className="button-quiz left"
                             onClick={this.handleCheck}
                         >
                             Check
@@ -151,13 +161,12 @@ class Quiz extends Component {
                     <div className="options">
                         {this.state.options.map((item) => (
                             <button
-                                // className="item button"
                                 className={
                                     item === correct
-                                        ? "item button correct"
+                                        ? "button-quiz correct"
                                         : item === selected && item !== correct
-                                        ? "item button selected"
-                                        : "item button"
+                                        ? "button-quiz selected"
+                                        : "button-quiz"
                                 }
                                 value={item}
                             >
@@ -165,7 +174,7 @@ class Quiz extends Component {
                             </button>
                         ))}
                         <button
-                            className="item button"
+                            className="button-quiz left"
                             onClick={this.handleNext}
                         >
                             Next
