@@ -22,7 +22,14 @@
 - [ ] BONUS: Progress bar
 - [ ] BONUS: use session token to ensure no duplicate questions
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with .
+
+## Built with
+
+- [React](http://reactjs.org)
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Open Trivia Database API](https://opentdb.com/)
+- [Super Tiny Icons](https://github.com/edent/SuperTinyIcons)
 
 ## Available Scripts
 
