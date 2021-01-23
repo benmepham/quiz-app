@@ -22,8 +22,6 @@
 - [ ] BONUS: Progress bar
 - [ ] BONUS: use session token to ensure no duplicate questions
 
-This project was bootstrapped with .
-
 ## Built with
 
 - [React](http://reactjs.org)
