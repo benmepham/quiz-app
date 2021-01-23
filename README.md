@@ -12,12 +12,11 @@
 - [x] Loading screen when fetching data
 - [x] Add network error handling
 - [x] Basic CSS styling
-- [ ] Fi
-- [ ] Add footer with link and version number
-- [ ] Make more mobile friendly
+- [x] Add footer with link and version number
+- [x] Make more mobile friendly
 - [ ] Fancy error page/spinner
 - [ ] Improve header
-- [ ] Prettify (improve styling and tidy CSS)
+- [ ] Continue improving UI and tidy css
 - [ ] BONUS: when redo with same questions, compare to previous best
 - [ ] BONUS: can specify length
 - [ ] BONUS: Progress bar
