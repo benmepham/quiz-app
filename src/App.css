@@ -16,6 +16,23 @@
     text-align: center;
 }
 
+/* Footer */
+.footer {
+    text-align: left;
+}
+.footer p {
+    display: inline-block;
+    margin: 10px;
+    vertical-align: middle;
+}
+
+.footer img {
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
 /* Start page */
 .start {
     display: grid;

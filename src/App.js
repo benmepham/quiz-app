@@ -5,6 +5,7 @@ import React, { Component } from "react";
 import Loader from "./components/loader";
 import Error from "./components/error";
 import Header from "./components/header";
+import Footer from "./components/footer";
 
 // Main App class
 class App extends Component {
@@ -94,6 +95,7 @@ class App extends Component {
                         questions={questions}
                     />
                 )}
+                <Footer />
             </div>
         );
     }
