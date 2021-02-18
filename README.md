@@ -2,27 +2,9 @@
 
 ![DeployToGitHubPages](https://github.com/benmepham/quiz-app/workflows/DeployToGitHubPages/badge.svg)
 
-## Tasks
+A simple React Quiz App using the OpenTDB API.
 
-- [x] Landing page lets you select category, difficulty and type
-- [x] Click submit to start quiz
-- [x] Displays questions one by one along with the choices.
-- [x] Once clicks check, highlights correct answer before moving to next question
-- [x] Gives score/10 at end. with options to redo or go to beginning
-- [x] Loading screen when fetching data
-- [x] Add network error handling
-- [x] Basic CSS styling
-- [x] Add footer with link and version number
-- [x] Make more mobile friendly
-- [ ] Fancy error page/spinner
-- [ ] Improve header
-- [ ] Continue improving UI and tidy css
-- [ ] BONUS: when redo with same questions, compare to previous best
-- [ ] BONUS: can specify length
-- [ ] BONUS: Progress bar
-- [ ] BONUS: use session token to ensure no duplicate questions
-
-## Built with
+## Built With
 
 - [React](http://reactjs.org)
 - [Create React App](https://github.com/facebook/create-react-app)
